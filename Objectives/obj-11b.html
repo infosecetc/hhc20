@@ -1,0 +1,910 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dan Roberts">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>11b) Naughty/Nice List with Blockchain Investigation Part 2 - 2020 Holiday Hack Challenge Solution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ef5552">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Merriweather",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="green">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-11b-naughtynice-list-with-blockchain-investigation-part-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-header-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            2020 Holiday Hack Challenge Solution
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              11b) Naughty/Nice List with Blockchain Investigation Part 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    2020 Holiday Hack Challenge Solution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Objectives
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Objectives
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-01.html" class="md-nav__link">
+      1) Uncover Santa's Gift List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-02.html" class="md-nav__link">
+      2) Investigate S3 Bucket
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-03.html" class="md-nav__link">
+      3) Point-of-Sale Password Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-04.html" class="md-nav__link">
+      4) Operate the Santavator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-05.html" class="md-nav__link">
+      5) Open HID Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-06.html" class="md-nav__link">
+      6) Splunk Challenge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-07.html" class="md-nav__link">
+      7) Solve the Sleigh's CAN-D-BUS Problem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-08.html" class="md-nav__link">
+      8) Broken Tag Generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-09.html" class="md-nav__link">
+      9) ARP Shenanigans
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-10.html" class="md-nav__link">
+      10) Defeat Fingerprint Sensor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="obj-11a.html" class="md-nav__link">
+      11a) Naughty/Nice List with Blockchain Investigation Part 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        11b) Naughty/Nice List with Blockchain Investigation Part 2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="obj-11b.html" class="md-nav__link md-nav__link--active">
+      11b) Naughty/Nice List with Blockchain Investigation Part 2
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../ending.html" class="md-nav__link">
+      Ending
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Terminals
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Terminals" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Terminals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/snowball.html" class="md-nav__link">
+      Snowball Fight
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/elfcode.html" class="md-nav__link">
+      The Elf Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/unprep.html" class="md-nav__link">
+      UnPrep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/scapy.html" class="md-nav__link">
+      Scapy Prepper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/kiosk.html" class="md-nav__link">
+      Kringle Kiosk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/sortomatic.html" class="md-nav__link">
+      Sort-o-matic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/linuxprimer.html" class="md-nav__link">
+      Linux Primer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/unescapetmux.html" class="md-nav__link">
+      Unescape Tmux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/canbus.html" class="md-nav__link">
+      CAN-Bus Investigation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/redis.html" class="md-nav__link">
+      Redis Bug Hunt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Terminals/336kbps.html" class="md-nav__link">
+      33.6kbps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../eggs.html" class="md-nav__link">
+      Easter Eggs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="objective-11b-naughtynice-list-with-blockchain-investigation-part-2">Objective 11b - Naughty/Nice List with Blockchain Investigation Part 2</h1>
+<h2 id="objective">Objective</h2>
+<p>The SHA256 of Jack's altered block is: 58a3b9335a6ceb0234c12d35a0564c4e f0e90152d0eb2ce2082383b38028a90f. If you're clever, you can recreate the original version of that block by changing the values of only 4 bytes. Once you've recreated the original block, what is the SHA256 of that block?</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Watch Professor Qwerty Petabyte's talk <a href="https://www.youtube.com/watch?v=Jo5Nlbqd-Vg">Working with the Official Naughty/Nice Blockchain</a> for some important background on this topic.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Read the slide deck on <a href="https://speakerdeck.com/ange/colltris">Hash Collision Exploitation</a> suggested by Tangle Coalbox.</p>
+</div>
+<h2 id="analysis">Analysis</h2>
+<p>It's helpful to get comfortable using the blockchain.dat file and naughty_nice.py.  Explore the functions and write some test code.  One thing you can do is dump out all the documents stored in the blockchain.  Some of the elf reports in these files are hilarious.  </p>
+<p>You'll find that one block (#129459) has more than one file attached.  The first is a PDF, and the other is an unrecognizable binary file.  Take a closer look at the block and its contents.</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">naughty_nice</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Import the official public key</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;official_public.pem&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">official_public_key</span> <span class="o">=</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+    <span class="c1"># Read the blockchain data into c2</span>
+    <span class="n">c2</span> <span class="o">=</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">Chain</span><span class="p">(</span><span class="n">load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;blockchain.dat&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Verify the blockchain data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C2: Block chain verify: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">verify_chain</span><span class="p">(</span><span class="n">official_public_key</span><span class="p">,</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">previous_hash</span><span class="p">)))</span>
+
+    <span class="c1"># Dump out all of the files</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">doc_count</span><span class="p">):</span>
+            <span class="n">orig_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">data_extension</span><span class="p">[</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]])</span>
+            <span class="n">new_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%i</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="n">j</span><span class="p">,</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">data_extension</span><span class="p">[</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]])</span>
+            <span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">dump_doc</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">orig_filename</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;docs/&#39;</span> <span class="o">+</span> <span class="n">new_filename</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The block itself shows that Jack Frost received the highest nice score possible, and the PDF contains a very complimentary report by Shinny Upatree.  Shinny denies writing this, but the unbroken blockchain would seem to contradict that.</p>
+<div class="codehilite"><pre><span></span><code>              Index: 129459
+              Nonce: a9447e5771c704f4
+                PID: 0000000000012fd1
+                RID: 000000000000020f
+     Document Count: 2
+              Score: ffffffff (4294967295)
+               Sign: 1 (Nice)
+         Data item: 1
+               Data Type: ff (Binary blob)
+             Data Length: 0000006c
+                    Data: b&#39;ea465340303a6079d3df2762be68467c27f046d3a7ff4e92dfe1def7407f2a7b73e1b759b8b919451e37518d22d987296fcb0f188dd60388bf20350f2a91c29d0348614dc0bceef2bcadd4cc3f251ba8f9fbaf171a06df1e1fd8649396ab86f9d5118cc8d8204b4ffe8d8f09&#39;
+</code></pre></div>
+
+<p>Slide 194 in the aforementioned slidedeck talks about a way to create a PDF with an MD5 hash collision.  The technique relies on the fact that a PDF file is composed of multiple sections that are mapped by something like a table of contents.  You can leave certain pages out of the mapping, and while the data is still in the file, it will be unused by the reader.  </p>
+<figure>
+  <img src="img/obj-11b-pdf.png" style="border:1px solid #000000"/>
+  <figcaption>129459-0.pdf - A glowing review of Jack Frost stored in the blockchain</figcaption>
+</figure>
+
+<p>You can modify that map using a hex editor, restoring the original text from the text Jack Frost injected into the file.  The first few lines of the PDF files read as follows:</p>
+<div class="codehilite"><pre><span></span><code>$ strings 129459-0.pdf
+%PDF-1.3
+1 0 obj
+&lt;&lt;/Type/Catalog/_Go_Away/Santa/Pages 2 0 R      0
+</code></pre></div>
+
+<p>Use a hex editor to change "Pages 2 0 R" to "Pages 3 0 R" and then view the PDF again.</p>
+<figure>
+  <img src="img/obj-11b-pdforig.png" style="border:1px solid #000000"/>
+  <figcaption>129459-0.pdf - After having the original text restored</figcaption>
+</figure>
+
+<p>This time, Jack Frost's true nature is revealed.  Jack used a UniColl technique (described here: <a href="https://github.com/corkami/collisions#pdf">https://github.com/corkami/collisions#pdf</a>) to create the alternate PDF file without altering the MD5 hash.  In fact, a ready-made script is available that claims to do this in mere seconds.</p>
+<p>In addition to changing the PDF file, Jack also flipped the sign from naughty to nice in the block without altering its MD5 hash.  This was done using the same technique, made possible because the file attachment data is stored in the block immediately after the 64-bytes containing the naughty/nice value.</p>
+<p>Examining the block_data() function in naughty_nice.py, you can determine the data structure.  The first  64-bytes are made up of the block's index number, nonce value, pid, and rid.  The next 64-bytes begin with: doc_count (c), score, sign (s), file attachment type, file attachment data length, and then the data for the file itself.</p>
+<figure>
+  <img src="img/obj-11b-block.png" style="border:0px solid #000000"/>
+  <figcaption>Block file structure</figcaption>
+</figure>
+
+<p>This block has another file attached besides the PDF.  That second file is stored beginning in the first data field.  Jack Frost used that binary blob to create an MD5 hash collision for the changed naughty/nice sign.</p>
+<p>Your job now is to restore the sign back to naughty (0) and the original text in the PDF file.  The objective says you can do this with changes to only 4 bytes in the block.</p>
+<h2 id="solution">Solution</h2>
+<p><strong>Step 1:</strong> Create a program to output the block to a file.</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">naughty_nice</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+   <span class="c1"># Import the official public key</span>
+   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;official_public.pem&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+       <span class="n">official_public_key</span> <span class="o">=</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+   <span class="c1"># Read the blockchain data into c2</span>
+   <span class="n">c2</span> <span class="o">=</span> <span class="n">naughty_nice</span><span class="o">.</span><span class="n">Chain</span><span class="p">(</span><span class="n">load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;blockchain.dat&#39;</span><span class="p">)</span>
+
+   <span class="c1"># Verify the blockchain data</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C2: Block chain verify: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">verify_chain</span><span class="p">(</span><span class="n">official_public_key</span><span class="p">,</span> <span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">previous_hash</span><span class="p">)))</span>
+
+   <span class="c1"># Show the block details</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C2: Block data: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">129459</span><span class="o">-</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]))</span>
+
+   <span class="c1"># Dump the block to a file</span>
+   <span class="n">c2</span><span class="o">.</span><span class="n">save_a_block</span><span class="p">(</span><span class="mi">129459</span><span class="o">-</span><span class="n">c2</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;block.dat&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Run the program and check its hashes to ensure you got what you were expecting.  The objective stated that the sha256 hash would begin with 58a3b933; the matching file hash confirms the program ran properly.</p>
+<div class="codehilite"><pre><span></span><code>$ ./obj-11b.py
+
+$ sha256sum block.dat
+58a3b9335a6ceb0234c12d35a0564c4ef0e90152d0eb2ce2082383b38028a90f
+
+$ md5sum block.dat
+b10b4a6bd373b61f32f4fd3a0cdfbf84
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Open the dat file in a hex editor and modify some bytes. Earlier you changed one byte in the pdf file to restore its original content, however that altered the file’s MD5 hash. Apply the UniColl technique, updating adjacent bytes in the next 64-byte block.  Since you made a +1 change in the PDF file, make -1 change in the next block to negate the change to the MD5 hash.</p>
+<p>Repeat the technique to fix the sign value.  This time you made a -1 change to the sign, so make a +1 change in the next 64-byte block.</p>
+<figure>
+  <img src="img/obj-11b-hexedit.png" style="border:1px solid #000000"/>
+  <figcaption>Hex editor view (after changes were made)</figcaption>
+</figure>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I used hexedit with the -l 16 option so that the bytes would be aligned nicely in the terminal, and each 4 lines represents a 64-byte block.  The default behavior is to display as many bytes across the screen that will fit, which could be harder to read depending on your terminal width.</p>
+</div>
+<p><strong>Step 4:</strong> Verify the hashes.  You can see that the md5 hash of the original block.dat file and the modified block.mod file match, but the sha256 hash is different.</p>
+<div class="codehilite"><pre><span></span><code>$ md5sum block.dat
+b10b4a6bd373b61f32f4fd3a0cdfbf84
+
+$ md5sum block.mod
+b10b4a6bd373b61f32f4fd3a0cdfbf84
+
+$ sha256sum block.dat
+58a3b9335a6ceb0234c12d35a0564c4ef0e90152d0eb2ce2082383b38028a90f  
+
+$ sha256sum block.mod
+<span class="hll">fff054f33c2134e0230efb29dad515064ac97aa8c68d33c58c01213a0d408afb 
+</span></code></pre></div>
+
+<p><strong><em>Answer: fff054f33c2134e0230efb29dad515064ac97aa8c68d33c58c01213a0d408afb</em></strong></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="obj-11a.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                11a) Naughty/Nice List with Blockchain Investigation Part 1
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../ending.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ending
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

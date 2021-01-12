@@ -1,0 +1,908 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dan Roberts">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>Scapy Prepper - 2020 Holiday Hack Challenge Solution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ef5552">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Merriweather",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="green">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scapy-prepper" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-header-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            2020 Holiday Hack Challenge Solution
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Scapy Prepper
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="2020 Holiday Hack Challenge Solution" class="md-nav__button md-logo" aria-label="2020 Holiday Hack Challenge Solution">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 1.25a.75.75 0 00-1.5 0v8.69L6.447 5.385a.75.75 0 10-1.061 1.06L9.94 11H1.25a.75.75 0 000 1.5h8.69l-4.554 4.553a.75.75 0 001.06 1.061L11 13.561v8.689a.75.75 0 001.5 0v-8.69l4.553 4.554a.75.75 0 001.061-1.06L13.561 12.5h8.689a.75.75 0 000-1.5h-8.69l4.554-4.553a.75.75 0 10-1.06-1.061L12.5 9.939V1.25z"/></svg>
+
+    </a>
+    2020 Holiday Hack Challenge Solution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Objectives
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Objectives
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-01.html" class="md-nav__link">
+      1) Uncover Santa's Gift List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-02.html" class="md-nav__link">
+      2) Investigate S3 Bucket
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-03.html" class="md-nav__link">
+      3) Point-of-Sale Password Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-04.html" class="md-nav__link">
+      4) Operate the Santavator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-05.html" class="md-nav__link">
+      5) Open HID Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-06.html" class="md-nav__link">
+      6) Splunk Challenge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-07.html" class="md-nav__link">
+      7) Solve the Sleigh's CAN-D-BUS Problem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-08.html" class="md-nav__link">
+      8) Broken Tag Generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-09.html" class="md-nav__link">
+      9) ARP Shenanigans
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-10.html" class="md-nav__link">
+      10) Defeat Fingerprint Sensor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-11a.html" class="md-nav__link">
+      11a) Naughty/Nice List with Blockchain Investigation Part 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../Objectives/obj-11b.html" class="md-nav__link">
+      11b) Naughty/Nice List with Blockchain Investigation Part 2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../ending.html" class="md-nav__link">
+      Ending
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Terminals
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Terminals" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Terminals
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="snowball.html" class="md-nav__link">
+      Snowball Fight
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="elfcode.html" class="md-nav__link">
+      The Elf Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="unprep.html" class="md-nav__link">
+      UnPrep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Scapy Prepper
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="scapy.html" class="md-nav__link md-nav__link--active">
+      Scapy Prepper
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-escape" class="md-nav__link">
+    Shell Escape
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="kiosk.html" class="md-nav__link">
+      Kringle Kiosk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="sortomatic.html" class="md-nav__link">
+      Sort-o-matic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="linuxprimer.html" class="md-nav__link">
+      Linux Primer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="unescapetmux.html" class="md-nav__link">
+      Unescape Tmux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="canbus.html" class="md-nav__link">
+      CAN-Bus Investigation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="redis.html" class="md-nav__link">
+      Redis Bug Hunt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="336kbps.html" class="md-nav__link">
+      33.6kbps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../eggs.html" class="md-nav__link">
+      Easter Eggs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-escape" class="md-nav__link">
+    Shell Escape
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="scapy-prepper">Scapy Prepper</h1>
+<h2 id="objective">Objective</h2>
+<figure><img src="img/scapy-intro.png"></figure>
+
+<p>This terminal is a guided introduction to scapy, a network manipulation tool that can be used to capture, decode, and generate packets.  It starts out spoon-feeding basic commands and usage to help you build familiarity with the tool, then asks questions that make you learn your way around the documentation.  As the exercise progresses, the prompts become increasingly challenging.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Help completing this exercise can be found in the Scapy documentation at <a href="https://scapy.readthedocs.io/en/latest/">https://scapy.readthedocs.io/en/latest/</a>, or you can use a cheat sheet like this one: <a href="https://packetlife.net/media/library/36/scapy.pdf">https://packetlife.net/media/library/36/scapy.pdf</a></p>
+</div>
+<h2 id="solution">Solution</h2>
+<p>Welcome to the "Present Packet Prepper" interface! The North Pole could use your help preparing present packets for shipment.
+Start by running the task.submit() function passing in a string argument of 'start'.
+Type task.help() for help on this question.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(&#39;start&#39;)
+Correct! adding a () to a function or class will execute it. Ex - FunctionExecuted()
+</code></pre></div>
+
+<p>Submit the class object of the scapy module that sends packets at layer 3 of the OSI model.
+For example, task.submit(sendp) would submit the sendp scapy class used to send packets at layer 2 of the OSI model.
+Scapy classes can be found at ( https://scapy.readthedocs.io/en/latest/api/scapy.sendrecv.html )</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(send)
+Correct! The &quot;send&quot; scapy class will send a crafted scapy packet out of a network interface.
+</code></pre></div>
+
+<p>Submit the class object of the scapy module that sniffs network packets and returns those packets in a list.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(sniff)
+Correct! the &quot;sniff&quot; scapy class will sniff network traffic and return these packets in a list.
+</code></pre></div>
+
+<p>Submit the NUMBER only from the choices below that would successfully send a TCP packet and then return the first sniffed response packet to be stored in a variable named "pkt":</p>
+<ol>
+<li>pkt = sr1(IP(dst="127.0.0.1")/TCP(dport=20))</li>
+<li>pkt = sniff(IP(dst="127.0.0.1")/TCP(dport=20))</li>
+<li>pkt = sendp(IP(dst="127.0.0.1")/TCP(dport=20))</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(1)
+Correct! sr1 will send a packet, then immediately sniff for a response packet.
+</code></pre></div>
+
+<p>Submit the class object of the scapy module that can read pcap or pcapng files and return a list of packets.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(rdpcap)
+Correct! the &quot;rdpcap&quot; scapy class can read pcap files.
+</code></pre></div>
+
+<p>The variable UDP_PACKETS contains a list of UDP packets. Submit the NUMBER only from the choices below that correctly prints a summary of UDP_PACKETS:</p>
+<ol>
+<li>UDP_PACKETS.print()</li>
+<li>UDP_PACKETS.show()</li>
+<li>UDP_PACKETS.list()</li>
+</ol>
+<p>Try each option and see which one works. Submit the NUMBER only of the correct choice.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(2)
+Correct! .show() can be used on lists of packets AND on an individual packet.
+</code></pre></div>
+
+<p>Submit only the first packet found in UDP_PACKETS.
+You can specify an item from a list using "list_var_name[num]" where "num" is the item number you want starting at 0.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(UDP_PACKETS[0])
+Correct! Scapy packet lists work just like regular python lists so packets can be accessed by their position in the list starting at offset 0.
+</code></pre></div>
+
+<p>Submit only the entire TCP layer of the second packet in TCP_PACKETS.
+If you had a packet stored in a variable named pkt, you could access its IP layer using "pkt[IP]"</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(TCP_PACKETS[1][TCP])
+Correct! Most of the major fields like Ether, IP, TCP, UDP, ICMP, DNS, DNSQR, DNSRR, Raw, etc... can be accessed this way. Ex - pkt[IP][TCP]
+</code></pre></div>
+
+<p>Change the source IP address of the first packet found in UDP_PACKETS to 127.0.0.1 and then submit this modified packet</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; UDP_PACKETS[0][IP].src=&quot;127.0.0.1&quot;
+&gt;&gt;&gt; task.submit(UDP_PACKETS[0])
+Correct! You can change ALL scapy packet attributes using this method.
+</code></pre></div>
+
+<p>Submit the password "task.submit('elf_password')" of the user alabaster as found in the packet list TCP_PACKETS.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; TCP_PACKETS[6][Raw].load
+b&#39;PASS echo\r\n&#39;
+
+&gt;&gt;&gt; task.submit(&#39;echo&#39;)
+Correct! Here is some really nice list comprehension that will grab all the raw payloads from tcp packets:
+[pkt[Raw].load for pkt in TCP_PACKETS if Raw in pkt]
+</code></pre></div>
+
+<p>The ICMP_PACKETS variable contains a packet list of several icmp echo-request and icmp echo-reply packets. 
+Submit only the ICMP chksum value from the second packet in the ICMP_PACKETS list.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(ICMP_PACKETS[1][ICMP].chksum)
+Correct! You can access the ICMP chksum value from the second packet using ICMP_PACKETS[1][ICMP].chksum .
+</code></pre></div>
+
+<p>Submit the number of the choice below that would correctly create a ICMP echo request packet with a destination IP of 127.0.0.1 stored in the variable named "pkt"</p>
+<ol>
+<li>pkt = Ether(src='127.0.0.1')/ICMP(type="echo-request")</li>
+<li>pkt = IP(src='127.0.0.1')/ICMP(type="echo-reply")</li>
+<li>pkt = IP(dst='127.0.0.1')/ICMP(type="echo-request")</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(3)
+Correct! Once you assign the packet to a variable named &quot;pkt&quot; you can then use 
+that variable to send or manipulate your created packet.
+</code></pre></div>
+
+<p>Create and then submit a UDP packet with a dport of 5000 and a dst IP of 127.127.127.127. (all other packet attributes can be unspecified)</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(IP(dst=&quot;127.127.127.127&quot;)/UDP(dport=5000))
+Correct! Your UDP packet creation should look something like this:
+pkt = IP(dst=&quot;127.127.127.127&quot;)/UDP(dport=5000)
+task.submit(pkt)
+</code></pre></div>
+
+<p>Create and then submit a UDP packet with a dport of 53, a dst IP of 127.2.3.4, and is a DNS query with a qname of "elveslove.santa". (all other packet attributes can be unspecified)</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; task.submit(IP(dst=&quot;127.2.3.4&quot;)/UDP(dport=53)/DNS(rd=1, qd=DNSQR(qname=&#39;elveslove.santa&#39;)))
+Correct! Your UDP packet creation should look something like this:
+pkt = IP(dst=&quot;127.2.3.4&quot;)/UDP(dport=53)/DNS(rd=1,qd=DNSQR(qname=&quot;elveslove.santa&quot;))
+task.submit(pkt)
+</code></pre></div>
+
+<p>The variable ARP_PACKETS contains an ARP request and response packets. The ARP response (the second packet) has 3 incorrect fields in the ARP layer. Correct the second packet in ARP_PACKETS to be a proper ARP response and then task.submit(ARP_PACKETS) for inspection.</p>
+<div class="codehilite"><pre><span></span><code>&gt;&gt;&gt; ARP_PACKETS[0][ARP]
+&lt;ARP  hwtype=0x1 ptype=IPv4 hwlen=6 plen=4 op=who-has hwsrc=00:16:ce:6e:8b:24 
+psrc=192.168.0.114 hwdst=00:00:00:00:00:00 pdst=192.168.0.1 |&gt;
+
+&gt;&gt;&gt; ARP_PACKETS[1][ARP]
+&lt;ARP  hwtype=0x1 ptype=IPv4 hwlen=6 plen=4 op=None hwsrc=ff:ff:ff:ff:ff:ff 
+psrc=192.168.0.1 hwdst=ff:ff:ff:ff:ff:ff pdst=192.168.0.114 |&lt;Padding  load=&#39;\xc0\xa8\x00r&#39; |&gt;&gt;
+
+&gt;&gt;&gt; ARP_PACKETS[1][ARP].op=2
+&gt;&gt;&gt; ARP_PACKETS[1][ARP].hwdst=&quot;00:16:ce:6e:8b:24&quot;
+
+&gt;&gt;&gt; ARP_PACKETS[1]
+&lt;Ether  dst=00:16:ce:6e:8b:24 src=00:13:46:0b:22:ba type=ARP |&lt;ARP  hwtype=0x1 
+ptype=IPv4 hwlen=6 plen=4 op=is-at hwsrc=00:e0:18:b1:0c:ad psrc=192.168.0.1 
+hwdst=00:16:ce:6e:8b:24 pdst=192.168.0.114 |&lt;Padding  load=&#39;\xc0\xa8\x00r&#39; |&gt;&gt;&gt;
+
+&gt;&gt;&gt; ARP_PACKETS[1][ARP].hwsrc=&#39;00:13:46:0b:22:ba&#39;
+&gt;&gt;&gt; task.submit(ARP_PACKETS)
+Great, you prepared all the present packets!
+Congratulations, all pretty present packets properly prepared for processing!
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the last problem, you need to look at the Ethernet frame details in the full packet using ARP_PACKETS[1] to discover the proper source MAC address. </p>
+</div>
+<h2 id="shell-escape">Shell Escape</h2>
+<p>You can escape to the terminal shell using <code>os.system('/bin/bash')</code></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="unprep.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                UnPrep
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="kiosk.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Kringle Kiosk
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.codehilite {
+    font-size: 0.9em
+}
+
+.md-typeset pre>code::-webkit-scrollbar {
+    width: .4rem;
+    height: .8rem
+}
+
+.md-typeset .codehilite code::-webkit-scrollbar,.md-typeset .codehilite pre::-webkit-scrollbar,.md-typeset .highlight code::-webkit-scrollbar,.md-typeset .highlight pre::-webkit-scrollbar {
+    width: .4rem;
+    height: .8rem
+}
+
+.md-typeset .codehilite, .md-typeset .highlight {
+    border-radius: 5px;
+}
